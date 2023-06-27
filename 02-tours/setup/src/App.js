@@ -15,7 +15,7 @@ function App() {
       const response = await fetch(url);
       const tours = await response.json();
       setIsLoading(false);
-      console.log(tours);
+      setTours(tours);
     } catch (error) {
       setIsLoading(false);
       console.error(error);
@@ -26,7 +26,7 @@ function App() {
     fetchTours();
   }, []);
 
-  return <main>{isLoading ? <Loading /> : <Tours />}</main>;
+  return <main>{isLoading ? <Loading /> : <Tours tours={tours} />}</main>;
 }
 
 export default App;
