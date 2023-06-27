@@ -30,10 +30,23 @@ function App() {
     setTours((prevTours) => prevTours.filter((tour) => tour.id != id));
   };
 
+  const EmptyTours = () => (
+    <main>
+      <div className="title">
+        <h2>no tours left</h2>
+        <button className="btn" onClick={fetchTours}>
+          refresh
+        </button>
+      </div>
+    </main>
+  );
+
   return (
     <main>
       {isLoading ? (
         <Loading />
+      ) : tours.length === 0 ? (
+        <EmptyTours />
       ) : (
         <Tours tours={tours} removeTour={removeTour} />
       )}
