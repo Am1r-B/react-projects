@@ -26,7 +26,19 @@ function App() {
     fetchTours();
   }, []);
 
-  return <main>{isLoading ? <Loading /> : <Tours tours={tours} />}</main>;
+  const removeTour = (id) => {
+    setTours((prevTours) => prevTours.filter((tour) => tour.id != id));
+  };
+
+  return (
+    <main>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Tours tours={tours} removeTour={removeTour} />
+      )}
+    </main>
+  );
 }
 
 export default App;
